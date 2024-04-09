@@ -4,7 +4,7 @@ import Styled from 'styled-components';
 
 // components
 import MainNavigationButton from '../buttons/navigation-button';
-
+import BasicButton from '../buttons/basicbutton';
 // images
 import ChatImg from './../../assets/images/chat.svg';
 import HomeImg from './../../assets/images/home.svg';
@@ -15,15 +15,13 @@ const MainNavigation = () => {
     <TopNav.Layout>
       <TopNav.MainNavButton icon={<TopNav.ChatIcon />} text="chat" href="/chat" exact={true} />
       {/* <TopNav.MainNavButton icon={<TopNav.HomeIcon />} text="home" href="/" exact={true} /> */}
-      <TopNav.MainNavButton
-        icon={<TopNav.SettingsIcon />}
-        text="settings"
-        href="/settings"
-        exact={true}
-      />
+      <TopNav.MainNavButton icon={<TopNav.SettingsIcon />} text="settings" href="/settings" exact={true} />
+      <BasicButton />
     </TopNav.Layout>
   );
 };
+
+
 
 const TopNav = {
   Layout: Styled.div`
