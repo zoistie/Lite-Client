@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { WavAudioEncoder } from './WavAudioEncoder';
+declare global {
+  interface Window {
+    sendAudioToMain: {
+      send: (audioData: ArrayBuffer) => void;
+    };
+  }
+}
 
 type ButtonWrapperProps = {
   selected: boolean;
@@ -37,6 +44,7 @@ const ToggleButton = () => {
         const audioUrl = URL.createObjectURL(data);
         console.log('Audio URL:', audioUrl);
         console.log('Recording stopped and processed');
+        window.sendAudioToMain.send(await data.arrayBuffer());
       } catch (error) {
         console.error('Error converting Blob to buffer:', error);
       }

@@ -41,3 +41,9 @@ function invoke<P extends any[], R>(channel: string, ...args: P) {
 function invokeNoParam<R>(channel: string, ...args: any[]) {
   return ipcRenderer.invoke(channel, ...args) as Promise<R>;
 }
+
+contextBridge.exposeInMainWorld('sendAudioToMain', {
+  send: (blob: Blob) => {
+    ipcRenderer.send('save-audio', blob);
+  }
+});

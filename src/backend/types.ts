@@ -5,6 +5,11 @@ export type OllamaQuestion = {
   query: string;
 };
 
+export type AudioMessage = {
+  audioBlob: Blob;
+}
+
+
 export interface IpcMainEventExtended extends IpcMainEvent {
   status: string;
 }
