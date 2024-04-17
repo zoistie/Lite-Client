@@ -99,49 +99,24 @@ export const appPath = path.parse(app.getPath('exe')).dir;
 ipcMain.on('save-audio', async (event, buffer: Buffer) => {
   try {
       console.log('Received audio buffer:', buffer);
-      // const filename = 'audio.wav'; // Specify the desired filename and extension
-      // const filePath = path.join(__dirname, filename); // Get the full path within the working directory
+      const filename = 'audio.wav'; // Specify the desired filename and extension
+      const filePath = path.join(__dirname, filename); // Get the full path within the working directory
 
-      // // Write the buffer data to a file
-      // fs.writeFile(filePath, Buffer.from(buffer), (err) => {
-      //     if (err) {
-      //         console.error('Error writing file:', err);
-      //         event.reply('save-audio-response', { success: false, error: err.message });
-      //     } else {
-      //         console.log('File saved successfully:', filePath);
-      //         event.reply('save-audio-response', { success: true, filename: filePath });
-      //     }
-      // });
-
-      // runPythonFunction('transcribe', (err: Error | null, result: string | null) => {
-      //   if (err) {
-      //       console.error('Error running Python function:', err);
-      //       event.reply('python-function-response', { success: false, error: err.message });
-      //   } else {
-      //       console.log('Result from Python:', result);
-      //       event.reply('python-function-response', { success: true, transcription: result });
-      //   }
-      // });
+      // Write the buffer data to a file
+      fs.writeFile(filePath, Buffer.from(buffer), (err) => {
+          if (err) {
+              console.error('Error writing file:', err);
+              event.reply('save-audio-response', { success: false, error: err.message });
+          } else {
+              console.log('File saved successfully:', filePath);
+              event.reply('save-audio-response', { success: true, filename: filePath });
+          }
+      });
   } catch (error) {
       console.error('Error:', error);
       event.reply('save-audio-response', { success: false, error: error.message });
   }
 });
 
-// function runPythonFunction(functionName: string, callback: (err: Error | null, result: string | null) => void): void {
-//   exec(`python check.py ${functionName}`, (error, stdout, stderr) => {
-//       if (error) {
-//           console.error(`exec error: ${error}`);
-//           callback(error, null);
-//           return;
-//       }
-//       if (stderr) {
-//           console.error(`stderr: ${stderr}`);
-//           callback(new Error(stderr), null);
-//           return;
-//       }
-//       callback(null, stdout.trim());
-//   });
-// }
 
 

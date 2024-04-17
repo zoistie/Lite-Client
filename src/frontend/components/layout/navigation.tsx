@@ -4,7 +4,7 @@ import Styled from 'styled-components';
 
 // components
 import MainNavigationButton from '../buttons/navigation-button';
-import ToggleButton from '../buttons/basicbutton';
+import ToggleButton from '../buttons/togglebutton';
 // images
 import ChatImg from './../../assets/images/chat.svg';
 import HomeImg from './../../assets/images/home.svg';
